@@ -15,6 +15,7 @@ const navItems = [
   { label: "Inicio", href: "#inicio" },
   { label: "Servicios", href: "#servicios" },
   { label: "Experiencia", href: "#experiencia" },
+  { label: "Ubicación", href: "#ubicacion" },
   { label: "Contacto", href: "#contacto" }
 ];
 
@@ -210,8 +211,6 @@ function Hero() {
   return h(
     "section",
     { className: "hero-section", id: "inicio" },
-    h("div", { className: "hero-glow hero-glow-one" }),
-    h("div", { className: "hero-glow hero-glow-two" }),
     h(
       "div",
       { className: "container hero-layout" },
@@ -220,9 +219,9 @@ function Hero() {
         { className: "hero-copy" },
         h(
           "div",
-          { className: "eyebrow eyebrow-dark" },
-          h("span", { className: "eyebrow-dot" }),
-          "TRANSPORTE DE CARGA PESADA"
+          { className: "hero-eyebrow" },
+          h("span", { className: "hero-eyebrow-line" }),
+          h("span", null, "TRANSPORTE DE CARGA PESADA")
         ),
         h(
           "h1",
@@ -277,35 +276,6 @@ function Hero() {
             title: "Confianza",
             text: "En cada servicio"
           })
-        )
-      ),
-      h(
-        "div",
-        { className: "hero-media" },
-        h("img", {
-          src: "https://images.pexels.com/photos/11087837/pexels-photo-11087837.jpeg?auto=compress&cs=tinysrgb&w=1600",
-          alt: "Tráiler rojo circulando por una carretera",
-          fetchPriority: "high",
-          onError: (event) => event.currentTarget.classList.add("image-unavailable")
-        }),
-        h("div", { className: "hero-media-shade" }),
-        h(
-          "div",
-          { className: "hero-image-label" },
-          h("span", { className: "label-accent" }),
-          h(
-            "span",
-            null,
-            h("small", null, "TRANSPORTE EN RUTA"),
-            h("strong", null, "Fuerza para llegar más lejos")
-          )
-        ),
-        h(
-          "div",
-          { className: "hero-image-index" },
-          "APC",
-          h("span", null, " / "),
-          "TRANSPORTE"
         )
       )
     )
@@ -494,6 +464,107 @@ function Portfolio() {
   );
 }
 
+function Location() {
+  return h(
+    "section",
+    { className: "location-section section-pad", id: "ubicacion" },
+    h(
+      "div",
+      { className: "container location-layout" },
+      h(
+        "div",
+        { className: "location-copy" },
+        h("span", { className: "section-kicker" }, "DÓNDE NOS ENCONTRAMOS"),
+        h(
+          "h2",
+          null,
+          "Estamos aquí para ",
+          h("span", null, "atenderte.")
+        ),
+        h(
+          "p",
+          null,
+          "Consulta nuestra ubicación y abre el mapa para conocer el punto exacto. ",
+          "Será un gusto coordinar contigo tu próximo servicio de transporte."
+        ),
+        h(
+          "div",
+          { className: "location-detail" },
+          h(
+            "span",
+            { className: "location-detail-icon" },
+            h(MaterialIcon, { name: "location_on" })
+          ),
+          h(
+            "span",
+            { className: "location-detail-copy" },
+            h("strong", null, "Nuestra ubicación"),
+            h("small", null, "Punto indicado en Google Maps")
+          )
+        ),
+        h(
+          "a",
+          {
+            className: "button button-location",
+            href: "https://maps.app.goo.gl/4DhJMiLW4mREQN1w6",
+            target: "_blank",
+            rel: "noopener noreferrer"
+          },
+          "Cómo llegar",
+          h(MaterialIcon, { name: "north_east" })
+        )
+      ),
+      h(
+        "div",
+        { className: "location-map-card" },
+        h(
+          "div",
+          { className: "location-map-heading" },
+          h(
+            "span",
+            { className: "location-map-title" },
+            h(MaterialIcon, { name: "map" }),
+            "UBICACIÓN EN EL MAPA"
+          ),
+          h(
+            "a",
+            {
+              href: "https://maps.app.goo.gl/4DhJMiLW4mREQN1w6",
+              target: "_blank",
+              rel: "noopener noreferrer",
+              "aria-label": "Abrir ubicación en Google Maps"
+            },
+            h(MaterialIcon, { name: "open_in_new" })
+          )
+        ),
+        h("iframe", {
+          className: "location-map",
+          title: "Ubicación compartida de Transportes APC en Google Maps",
+          src: "https://maps.google.com/maps?q=-13.9351381%2C-75.862211&z=16&output=embed",
+          loading: "lazy",
+          referrerPolicy: "no-referrer-when-downgrade",
+          allowFullScreen: true
+        }),
+        h(
+          "div",
+          { className: "location-map-footer" },
+          h(MaterialIcon, { name: "near_me" }),
+          h("span", null, "Ver punto exacto y cómo llegar"),
+          h(
+            "a",
+            {
+              href: "https://maps.app.goo.gl/4DhJMiLW4mREQN1w6",
+              target: "_blank",
+              rel: "noopener noreferrer"
+            },
+            "Google Maps"
+          )
+        )
+      )
+    )
+  );
+}
+
 function Contact() {
   return h(
     "section",
@@ -617,6 +688,7 @@ function App() {
       h(Hero),
       h(Services),
       h(Portfolio),
+      h(Location),
       h(Contact)
     ),
     h(Footer),

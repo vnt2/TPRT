@@ -1743,3 +1743,601 @@ img {
     animation-iteration-count: 1 !important;
   }
 }
+
+
+/* =========================================================
+   AJUSTE DE IDENTIDAD APC — NAVBAR, HERO FOTOGRÁFICO Y MAPA
+   ========================================================= */
+
+/* Cabecera coordinada con el emblema rojo, negro y acero */
+.site-header {
+  border-top: 3px solid var(--red);
+  border-bottom: 1px solid #e6e9ed;
+  background: rgba(255, 255, 255, .985);
+  box-shadow: 0 5px 24px rgba(13, 25, 36, .07);
+}
+
+.nav-inner {
+  min-height: 88px;
+  gap: 30px;
+}
+
+.brand {
+  min-width: 245px;
+  gap: 12px;
+}
+
+.brand-logo {
+  width: 76px;
+  height: 68px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.brand-copy {
+  position: relative;
+  gap: 7px;
+  padding-left: 12px;
+  border-left: 1px solid #e2e5e8;
+}
+
+.brand-copy strong {
+  color: #111a23;
+  font-size: 19px;
+  letter-spacing: -.06em;
+}
+
+.brand-copy small {
+  width: fit-content;
+  color: var(--red);
+  font-size: 11px;
+  letter-spacing: .42em;
+  font-weight: 900;
+}
+
+.nav-link {
+  color: #34414d;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--red);
+}
+
+.nav-cta {
+  min-height: 49px;
+  border-radius: 7px;
+  background: #c9232b;
+  box-shadow: none;
+}
+
+.nav-cta:hover {
+  background: #a91d24;
+  box-shadow: 0 8px 18px rgba(169, 29, 36, .16);
+}
+
+/* Hero: fotografía panorámica real de tráiler en carretera */
+.hero-section {
+  min-height: 690px;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #101923;
+  background-image:
+    linear-gradient(90deg,
+      rgba(7, 15, 23, .91) 0%,
+      rgba(7, 15, 23, .82) 35%,
+      rgba(7, 15, 23, .57) 66%,
+      rgba(7, 15, 23, .40) 100%),
+    linear-gradient(0deg,
+      rgba(7, 15, 23, .55) 0%,
+      rgba(7, 15, 23, .05) 45%,
+      rgba(7, 15, 23, .22) 100%),
+    url("https://images.pexels.com/photos/11087837/pexels-photo-11087837.jpeg?auto=compress&cs=tinysrgb&w=2200");
+  background-size: cover;
+  background-position: center 54%;
+  background-repeat: no-repeat;
+}
+
+.hero-section::before {
+  display: none;
+}
+
+.hero-section::after {
+  display: none;
+}
+
+.hero-glow {
+  display: none;
+}
+
+.hero-layout {
+  display: flex;
+  align-items: center;
+  width: min(var(--container), calc(100% - 64px));
+  min-height: 690px;
+  padding-top: 82px;
+  padding-bottom: 74px;
+}
+
+.hero-copy {
+  width: min(760px, 72%);
+  max-width: 760px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 5px;
+  color: #fff;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: .22em;
+}
+
+.hero-eyebrow-line {
+  display: inline-block;
+  width: 34px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--red-bright);
+  box-shadow: 0 0 13px rgba(240, 68, 77, .35);
+}
+
+.hero-copy h1 {
+  max-width: 760px;
+  margin: 25px 0 22px;
+  font-size: clamp(50px, 5.1vw, 70px);
+  line-height: 1.07;
+  letter-spacing: -.065em;
+  text-shadow: 0 3px 22px rgba(0, 0, 0, .22);
+}
+
+.hero-copy h1 span {
+  color: #ff4b54;
+}
+
+.hero-description {
+  max-width: 640px;
+  color: #e0e6eb;
+  font-size: 17px;
+  line-height: 1.8;
+  text-shadow: 0 2px 12px rgba(0,0,0,.24);
+}
+
+.hero-actions {
+  margin-top: 30px;
+}
+
+.button-primary {
+  background: #d9272e;
+}
+
+.button-primary:hover {
+  background: #b91f27;
+}
+
+.button-secondary {
+  border-color: rgba(255,255,255,.42);
+  background: rgba(10, 20, 29, .28);
+  backdrop-filter: blur(5px);
+}
+
+.hero-trust {
+  max-width: 690px;
+  margin-top: 42px;
+  border-top-color: rgba(255,255,255,.25);
+}
+
+.trust-icon {
+  border-color: rgba(255,255,255,.25);
+  background: rgba(10, 20, 29, .38);
+  backdrop-filter: blur(5px);
+}
+
+/* Sección de ubicación */
+.location-section {
+  background: #fff;
+}
+
+.location-layout {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  align-items: center;
+  gap: clamp(38px, 6vw, 82px);
+}
+
+.location-copy {
+  max-width: 470px;
+}
+
+.location-copy h2 {
+  margin: 14px 0 16px;
+  color: #18222c;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 3.4vw, 46px);
+  line-height: 1.13;
+  font-weight: 800;
+  letter-spacing: -.06em;
+}
+
+.location-copy h2 span {
+  color: var(--red);
+}
+
+.location-copy > p {
+  margin: 0;
+  color: #687480;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.location-detail {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 26px 0 23px;
+  padding: 15px;
+  border: 1px solid #e8ebee;
+  border-radius: 10px;
+  background: #f8f9fa;
+}
+
+.location-detail-icon {
+  width: 43px;
+  height: 43px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: #fff;
+  border-radius: 9px;
+  background: var(--red);
+}
+
+.location-detail-icon .material-symbols-rounded {
+  font-size: 23px;
+}
+
+.location-detail-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.location-detail-copy strong {
+  color: #1c2731;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.location-detail-copy small {
+  color: #7b8791;
+  font-size: 11px;
+}
+
+.button-location {
+  min-height: 50px;
+  color: #fff;
+  background: #c9232b;
+  box-shadow: 0 9px 20px rgba(201, 35, 43, .14);
+}
+
+.button-location:hover {
+  background: #a91d24;
+}
+
+.location-map-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #e2e7eb;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 18px 45px rgba(19, 35, 48, .10);
+}
+
+.location-map-heading {
+  min-height: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 19px;
+  border-bottom: 1px solid #edf0f2;
+}
+
+.location-map-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #35414c;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.location-map-title .material-symbols-rounded {
+  color: var(--red);
+  font-size: 20px;
+}
+
+.location-map-heading > a {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #596571;
+  border: 1px solid #e5e9ec;
+  border-radius: 7px;
+  transition: color .2s ease, border-color .2s ease;
+}
+
+.location-map-heading > a:hover {
+  color: var(--red);
+  border-color: #e5b4b7;
+}
+
+.location-map {
+  width: 100%;
+  height: 340px;
+  display: block;
+  border: 0;
+  background: #edf0f2;
+}
+
+.location-map-footer {
+  min-height: 49px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 17px;
+  color: #7a8590;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.location-map-footer > .material-symbols-rounded {
+  color: var(--red);
+  font-size: 17px;
+}
+
+.location-map-footer > a {
+  margin-left: auto;
+  color: #b32129;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.location-map-footer > a:hover {
+  text-decoration: underline;
+}
+
+/* Ajustes de pantallas medianas */
+@media (max-width: 1050px) {
+  .brand {
+    min-width: 220px;
+  }
+
+  .brand-logo {
+    width: 68px;
+    height: 63px;
+  }
+
+  .brand-copy {
+    padding-left: 9px;
+  }
+
+  .hero-copy {
+    width: min(720px, 78%);
+  }
+}
+
+/* Ajustes para tablet y móvil */
+@media (max-width: 860px) {
+  .nav-inner {
+    min-height: 77px;
+  }
+
+  .brand {
+    min-width: 0;
+    gap: 9px;
+  }
+
+  .brand-logo {
+    width: 64px;
+    height: 59px;
+  }
+
+  .brand-copy strong {
+    font-size: 17px;
+  }
+
+  .hero-section {
+    min-height: 0;
+    background-position: 59% center;
+    background-image:
+      linear-gradient(90deg,
+        rgba(7, 15, 23, .88) 0%,
+        rgba(7, 15, 23, .75) 55%,
+        rgba(7, 15, 23, .56) 100%),
+      linear-gradient(0deg, rgba(7, 15, 23, .48), rgba(7, 15, 23, .12)),
+      url("https://images.pexels.com/photos/11087837/pexels-photo-11087837.jpeg?auto=compress&cs=tinysrgb&w=1800");
+  }
+
+  .hero-layout {
+    min-height: 0;
+    padding-top: 67px;
+    padding-bottom: 57px;
+  }
+
+  .hero-copy {
+    width: min(720px, 100%);
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(45px, 7.2vw, 61px);
+  }
+
+  .location-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .location-copy {
+    max-width: 650px;
+  }
+
+  .location-map {
+    height: 320px;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-header {
+    border-top-width: 3px;
+  }
+
+  .nav-inner {
+    min-height: 72px;
+  }
+
+  .brand-logo {
+    width: 56px;
+    height: 52px;
+  }
+
+  .brand-copy {
+    gap: 5px;
+    padding-left: 8px;
+  }
+
+  .brand-copy strong {
+    font-size: 15px;
+  }
+
+  .brand-copy small {
+    font-size: 9px;
+    letter-spacing: .38em;
+  }
+
+  .menu-toggle {
+    width: 43px;
+    height: 43px;
+    border-color: #e0e4e8;
+    border-radius: 8px;
+  }
+
+  .hero-section {
+    background-position: 62% center;
+    background-image:
+      linear-gradient(90deg,
+        rgba(7, 15, 23, .89) 0%,
+        rgba(7, 15, 23, .79) 58%,
+        rgba(7, 15, 23, .66) 100%),
+      linear-gradient(0deg, rgba(7, 15, 23, .58), rgba(7, 15, 23, .12)),
+      url("https://images.pexels.com/photos/11087837/pexels-photo-11087837.jpeg?auto=compress&cs=tinysrgb&w=1400");
+  }
+
+  .hero-layout {
+    padding-top: 51px;
+    padding-bottom: 43px;
+  }
+
+  .hero-eyebrow {
+    gap: 10px;
+    font-size: 9px;
+    letter-spacing: .16em;
+  }
+
+  .hero-eyebrow-line {
+    width: 25px;
+    height: 2px;
+  }
+
+  .hero-copy h1 {
+    margin-top: 21px;
+    margin-bottom: 16px;
+    font-size: clamp(38px, 9.7vw, 47px);
+    line-height: 1.09;
+  }
+
+  .hero-description {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.72;
+  }
+
+  .hero-actions {
+    margin-top: 23px;
+  }
+
+  .hero-trust {
+    margin-top: 27px;
+    padding-top: 19px;
+  }
+
+  .location-copy h2 {
+    font-size: 33px;
+  }
+
+  .location-copy > p {
+    font-size: 14px;
+  }
+
+  .location-detail {
+    margin-top: 21px;
+    margin-bottom: 19px;
+    padding: 12px;
+  }
+
+  .button-location {
+    width: 100%;
+  }
+
+  .location-map-card {
+    border-radius: 12px;
+  }
+
+  .location-map-heading {
+    min-height: 51px;
+    padding-inline: 13px;
+  }
+
+  .location-map {
+    height: 270px;
+  }
+
+  .location-map-footer {
+    min-height: 45px;
+    padding-inline: 12px;
+    font-size: 9px;
+  }
+
+  .location-map-footer > a {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand-logo {
+    width: 49px;
+    height: 46px;
+  }
+
+  .brand-copy strong {
+    font-size: 14px;
+  }
+
+  .hero-copy h1 {
+    font-size: 36px;
+  }
+
+  .location-map {
+    height: 245px;
+  }
+}
