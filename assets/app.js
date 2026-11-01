@@ -13,11 +13,14 @@ const WHATSAPP_URL =
 
 const navItems = [
   { label: "Inicio", href: "#inicio" },
-  { label: "Servicios", href: "#servicios" },
   { label: "Experiencia", href: "#experiencia" },
+  { label: "Servicios", href: "#servicios" },
   { label: "Ubicación", href: "#ubicacion" },
   { label: "Contacto", href: "#contacto" }
 ];
+
+const IS_DETAIL_PAGE = document.body.dataset.page === "experience-detail";
+const HOME_LINK = "./index.html";
 
 // Fotografías de referencia. Reemplazarlas por imágenes reales de la empresa
 // antes de presentar estos trabajos como experiencia propia.
@@ -93,8 +96,8 @@ function Brand() {
     "a",
     {
       className: "brand",
-      href: "#inicio",
-      "aria-label": "Transportes APC, inicio"
+      href: IS_DETAIL_PAGE ? `${HOME_LINK}#inicio` : "#inicio",
+      "aria-label": "Transportes APC, volver al inicio"
     },
     h("img", {
       className: "brand-logo",
@@ -128,7 +131,11 @@ function Navbar() {
         navItems.map((item) =>
           h(
             "a",
-            { key: item.href, className: "nav-link", href: item.href },
+            {
+              key: item.href,
+              className: "nav-link",
+              href: IS_DETAIL_PAGE ? `${HOME_LINK}${item.href}` : item.href
+            },
             item.label
           )
         )
@@ -166,7 +173,7 @@ function Navbar() {
             {
               key: item.href,
               className: "mobile-link",
-              href: item.href,
+              href: IS_DETAIL_PAGE ? `${HOME_LINK}${item.href}` : item.href,
               onClick: closeMenu
             },
             item.label,
@@ -361,8 +368,15 @@ function Services() {
 
 function WorkCard({ work }) {
   return h(
-    "article",
-    { className: "work-card", id: `experiencia-${work.id}` },
+    "a",
+    {
+      className: "work-card",
+      id: `experiencia-${work.id}`,
+      href: `./experiencia.html?id=${work.id}`,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      "aria-label": `Abrir ficha de ejemplo: ${work.cliente} en una nueva pestaña`
+    },
     h(
       "div",
       { className: "work-image-wrap" },
@@ -388,14 +402,9 @@ function WorkCard({ work }) {
         h("span", null, work.ruta)
       ),
       h(
-        "a",
-        {
-          className: "work-link",
-          href: WHATSAPP_URL,
-          target: "_blank",
-          rel: "noopener noreferrer"
-        },
-        "Consultar un servicio similar",
+        "div",
+        { className: "work-link" },
+        "Ver ficha del servicio",
         h(MaterialIcon, { name: "arrow_outward" })
       )
     )
@@ -651,7 +660,14 @@ function Footer() {
         "nav",
         { className: "footer-nav", "aria-label": "Navegación del pie de página" },
         navItems.map((item) =>
-          h("a", { key: item.href, href: item.href }, item.label)
+          h(
+            "a",
+            {
+              key: item.href,
+              href: IS_DETAIL_PAGE ? `${HOME_LINK}${item.href}` : item.href
+            },
+            item.label
+          )
         )
       ),
       h(
@@ -677,6 +693,303 @@ function WhatsAppFloat() {
   );
 }
 
+const experienceDetails = {
+  1: {
+    eyebrow: "CASO DEMOSTRATIVO 01",
+    title: "Transporte de carga por carretera",
+    category: "Carga pesada",
+    intro:
+      "Ejemplo de una operación de transporte de mercancía embalada, desde la coordinación inicial hasta la entrega en el destino acordado.",
+    route: "Ica – Pisco",
+    load: "Mercadería embalada",
+    vehicle: "Tractocamión con semirremolque",
+    focus: "Coordinación de ruta y entrega",
+    objective:
+      "Organizar el traslado de una carga general considerando el tipo de mercancía, las condiciones del recorrido y los horarios coordinados con el cliente.",
+    stages: [
+      {
+        number: "01",
+        title: "Coordinación del servicio",
+        text: "Se recopila la información de la carga, el punto de recojo, el destino y las condiciones de entrega."
+      },
+      {
+        number: "02",
+        title: "Preparación del traslado",
+        text: "Se revisan los datos operativos y se organiza la salida de acuerdo con lo coordinado."
+      },
+      {
+        number: "03",
+        title: "Ruta y entrega",
+        text: "Se realiza el traslado y se coordina la recepción de la mercancía en el punto de destino."
+      }
+    ]
+  },
+  2: {
+    eyebrow: "CASO DEMOSTRATIVO 02",
+    title: "Traslado de carga industrial",
+    category: "Industrial",
+    intro:
+      "Ejemplo de una operación para movilizar suministros, componentes y materiales destinados a una instalación industrial.",
+    route: "Pisco – Ica",
+    load: "Suministros y componentes",
+    vehicle: "Unidad de carga pesada",
+    focus: "Planificación y acondicionamiento",
+    objective:
+      "Presentar una operación organizada en la que se consideran las dimensiones, el acondicionamiento y las indicaciones de manipulación de la carga.",
+    stages: [
+      {
+        number: "01",
+        title: "Identificación de la carga",
+        text: "Se recopilan las características generales, dimensiones y requerimientos de manipulación del material."
+      },
+      {
+        number: "02",
+        title: "Organización logística",
+        text: "Se coordinan los horarios, accesos y condiciones necesarias para efectuar el servicio."
+      },
+      {
+        number: "03",
+        title: "Traslado coordinado",
+        text: "La unidad realiza el recorrido previsto y se coordina la recepción con el responsable del destino."
+      }
+    ]
+  },
+  3: {
+    eyebrow: "CASO DEMOSTRATIVO 03",
+    title: "Transporte de maquinaria",
+    category: "Maquinaria",
+    intro:
+      "Ejemplo de presentación de un servicio de traslado de maquinaria y equipos de trabajo para proyectos de construcción u operaciones productivas.",
+    route: "Ruta interprovincial referencial",
+    load: "Maquinaria y equipos",
+    vehicle: "Configuración según dimensiones de carga",
+    focus: "Evaluación previa del traslado",
+    objective:
+      "Mostrar cómo se estructura una solicitud de transporte de equipos, considerando sus dimensiones, peso, puntos de carga y descarga, y condiciones de circulación.",
+    stages: [
+      {
+        number: "01",
+        title: "Evaluación del equipo",
+        text: "Se solicita información de las dimensiones, peso y características de la maquinaria que se desea movilizar."
+      },
+      {
+        number: "02",
+        title: "Definición de condiciones",
+        text: "Se revisan los accesos, puntos de carga y descarga, y los requerimientos especiales que correspondan."
+      },
+      {
+        number: "03",
+        title: "Coordinación del servicio",
+        text: "Se establece la programación del traslado y la comunicación con los responsables de origen y destino."
+      }
+    ]
+  }
+};
+
+function DetailFact({ icon, label, value }) {
+  return h(
+    "div",
+    { className: "detail-fact" },
+    h(
+      "span",
+      { className: "detail-fact-icon" },
+      h(MaterialIcon, { name: icon })
+    ),
+    h(
+      "span",
+      { className: "detail-fact-copy" },
+      h("small", null, label),
+      h("strong", null, value)
+    )
+  );
+}
+
+function ExperienceDetail() {
+  const requestedId = Number(new URLSearchParams(window.location.search).get("id")) || 1;
+  const work = worksData.find((item) => item.id === requestedId) || worksData[0];
+  const detail = experienceDetails[work.id] || experienceDetails[1];
+
+  return h(
+    React.Fragment,
+    null,
+    h(Navbar),
+    h(
+      "main",
+      { className: "detail-page" },
+      h(
+        "section",
+        { className: "detail-hero" },
+        h(
+          "div",
+          { className: "container detail-hero-inner" },
+          h(
+            "div",
+            { className: "detail-breadcrumb" },
+            h("a", { href: "./index.html#inicio" }, "Inicio"),
+            h(MaterialIcon, { name: "chevron_right" }),
+            h("a", { href: "./index.html#experiencia" }, "Experiencia"),
+            h(MaterialIcon, { name: "chevron_right" }),
+            h("span", null, `0${work.id}`)
+          ),
+          h("span", { className: "detail-eyebrow" }, detail.eyebrow),
+          h("h1", null, detail.title),
+          h("p", null, detail.intro),
+          h(
+            "div",
+            { className: "detail-hero-actions" },
+            h(
+              "a",
+              {
+                className: "button button-primary",
+                href: WHATSAPP_URL,
+                target: "_blank",
+                rel: "noopener noreferrer"
+              },
+              "Consultar un servicio",
+              h(MaterialIcon, { name: "north_east" })
+            ),
+            h(
+              "a",
+              { className: "detail-back-link", href: "./index.html#experiencia" },
+              h(MaterialIcon, { name: "arrow_back" }),
+              "Volver a experiencias"
+            )
+          )
+        )
+      ),
+      h(
+        "section",
+        { className: "detail-image-section" },
+        h(
+          "div",
+          { className: "container" },
+          h(
+            "div",
+            { className: "detail-image-frame" },
+            h("img", {
+              src: work.imagen,
+              alt: work.alt,
+              onError: (event) => event.currentTarget.classList.add("image-unavailable")
+            }),
+            h(
+              "span",
+              { className: "detail-image-caption" },
+              h(MaterialIcon, { name: "photo_camera" }),
+              "Fotografía referencial"
+            )
+          )
+        )
+      ),
+      h(
+        "section",
+        { className: "detail-overview section-pad" },
+        h(
+          "div",
+          { className: "container detail-overview-grid" },
+          h(
+            "div",
+            { className: "detail-overview-copy" },
+            h("span", { className: "section-kicker" }, "DESCRIPCIÓN DEL SERVICIO"),
+            h("h2", null, "Una operación bien coordinada."),
+            h("p", null, detail.objective),
+            h(
+              "div",
+              { className: "detail-demo-note" },
+              h(MaterialIcon, { name: "info" }),
+              h(
+                "span",
+                null,
+                "Contenido de demostración: este caso, sus datos y la fotografía son ilustrativos y no describen un servicio real ejecutado por Transportes APC."
+              )
+            )
+          ),
+          h(
+            "div",
+            { className: "detail-facts-card" },
+            h("span", { className: "detail-facts-heading" }, "RESUMEN DEL EJEMPLO"),
+            h(DetailFact, {
+              icon: "route",
+              label: "Ruta referencial",
+              value: detail.route
+            }),
+            h(DetailFact, {
+              icon: "inventory_2",
+              label: "Tipo de carga",
+              value: detail.load
+            }),
+            h(DetailFact, {
+              icon: "local_shipping",
+              label: "Unidad de transporte",
+              value: detail.vehicle
+            }),
+            h(DetailFact, {
+              icon: "assignment_turned_in",
+              label: "Enfoque del servicio",
+              value: detail.focus
+            })
+          )
+        )
+      ),
+      h(
+        "section",
+        { className: "detail-process section-pad" },
+        h(
+          "div",
+          { className: "container" },
+          h(SectionHeading, {
+            kicker: "CÓMO SE ORGANIZA",
+            title: "Etapas del",
+            accent: "servicio.",
+            description:
+              "Una estructura de ejemplo para explicar al visitante cómo puede desarrollarse una solicitud de transporte."
+          }),
+          h(
+            "div",
+            { className: "detail-stages" },
+            detail.stages.map((stage) =>
+              h(
+                "article",
+                { className: "detail-stage", key: stage.number },
+                h("span", { className: "detail-stage-number" }, stage.number),
+                h("h3", null, stage.title),
+                h("p", null, stage.text)
+              )
+            )
+          )
+        )
+      ),
+      h(
+        "section",
+        { className: "detail-cta-section" },
+        h(
+          "div",
+          { className: "container detail-cta-inner" },
+          h(
+            "div",
+            null,
+            h("span", { className: "section-kicker section-kicker-light" }, "TRANSPORTES APC"),
+            h("h2", null, "¿Necesitas un servicio como este?"),
+            h("p", null, "Conversemos sobre tu carga, el recorrido y las condiciones de tu traslado.")
+          ),
+          h(
+            "a",
+            {
+              className: "button button-primary",
+              href: WHATSAPP_URL,
+              target: "_blank",
+              rel: "noopener noreferrer"
+            },
+            h(WhatsAppMark, { size: 20 }),
+            "Solicitar información"
+          )
+        )
+      )
+    ),
+    h(Footer),
+    h(WhatsAppFloat)
+  );
+}
+
 function App() {
   return h(
     React.Fragment,
@@ -686,8 +999,8 @@ function App() {
       "main",
       null,
       h(Hero),
-      h(Services),
       h(Portfolio),
+      h(Services),
       h(Location),
       h(Contact)
     ),
@@ -696,4 +1009,6 @@ function App() {
   );
 }
 
-createRoot(document.getElementById("root")).render(h(App));
+createRoot(document.getElementById("root")).render(
+  h(IS_DETAIL_PAGE ? ExperienceDetail : App)
+);
